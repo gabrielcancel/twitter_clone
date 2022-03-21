@@ -30,6 +30,8 @@ gem "jbuilder"
 # Genere authentificaton solution
 gem 'devise'
 
+gem 'awesome_print'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
