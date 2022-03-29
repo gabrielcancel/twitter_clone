@@ -10,14 +10,85 @@
         <div class="sign-container">
             <h2 class="font-s5 title font-w700 mb-5">Join twitter today.</h2>
 
-            <div id="signup-btn" class="btn d-flex py-3 text-white font-w900 text-center blue rounded-4 px-3 mb-4">
+            <div id="signup-btn" class="btn d-flex py-3 text-white font-w900 text-center blue rounded-4 px-3 mb-4" data-target="modal-signup">
                 <p class="mx-auto">Sign up</p>
             </div>
 
-            <div id="signin-btn" class="btn d-flex py-3 text-blue font-w900 text-center bd-solid bd-blue bd-1 rounded-4 px-3">
+            <div id="signin-btn" class="btn d-flex py-3 text-blue font-w900 text-center bd-solid bd-blue bd-1 rounded-4 px-3" data-target="modal-signin">
                 <p class="mx-auto">Log in</p>
             </div>
         </div>
+
+
+        <div class="modal shadow-1 white modal-falling rounded-2" id="modal-signup" data-ax="modal">
+            <div class="modal-header d-flex">
+                <p>Sign up</p>
+                <div data-target="modal-signup" class="ml-auto cursor-pointer">
+                    <span class="iconify" data-icon="ep:close-bold"></span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="modal-content px-5">
+                <form class="form-material">
+                    <div class="form-field">
+                        <input type="email" id="signup-email" class="form-control" required/>
+                        <label for="signup-email">Email</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="text" id="signup-name" class="form-control" required/>
+                        <label for="signup-name">Username</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="password" id="signup-password" class="form-control" required/>
+                        <label for="signup-password">Password</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="password" id="signup-password-repeat" class="form-control" required />
+                        <label for="signup-password-repeat">Repeat password</label>
+                    </div>
+                </form>
+            </div>
+
+            <div class="divider mb-2"></div>
+
+            <div class="modal-footer d-flex">
+                <button class="btn shadow-1 rounded-1 btn-small primary mx-auto" id="register-btn">Register</button>
+            </div>
+        </div>
+
+        <div class="modal shadow-1 white modal-falling rounded-2" id="modal-signin" data-ax="modal">
+            <div class="modal-header d-flex">
+                <p>Sign in</p>
+                <div data-target="modal-signin" class="ml-auto cursor-pointer">
+                    <span class="iconify" data-icon="ep:close-bold"></span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="modal-content px-5">
+                <form class="form-material">
+                    <div class="form-field">
+                        <input type="text" id="signin-name" class="form-control"/>
+                        <label for="signin-name">Username / Email</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="password" id="signin-password" class="form-control"/>
+                        <label for="signin-password">Password</label>
+                    </div>
+                </form>
+            </div>
+
+            <div class="divider mb-2"></div>
+
+            <div class="modal-footer d-flex">
+                <button class="btn shadow-1 rounded-1 btn-small primary mx-auto" id="login-btn">Login</button>
+            </div>
+        </div>
+
+
     </div>
 
 
@@ -95,4 +166,7 @@
         width: 300px;
     }
 
+    #modal-signin {
+        width: 30%;
+    }
 </style>
