@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Twitter Clone</title>
+    <title>Twitter</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@2.0.0/dist/axentix.min.css">
     <%= csrf_meta_tags %>
@@ -12,6 +12,19 @@
 </head>
 
 <body>
+    <% if flash[:notice] %>
+        <div class="flash notice">
+            <p class="notice"><%= notice %></p>
+        </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+        <div class="flash alert">
+            <p class="alert"><%= alert %></p>
+        </div>
+    <% end %>
+
+
 <%= yield %>
 </body>
 </html>

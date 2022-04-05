@@ -6,30 +6,39 @@
   </div>
 </section>
 
+<p style="color: green"><%= notice %></p>
 
+<h1>Tweets</h1>
 
+<div class="left panel">
+        <div>Accueil</div>
+        <div>Explorer</div>
+        <div>Notifications</div>
+        <div>Messages</div>
+        <div>Signets</div>
+        <div>Listes</div>
+        <div>Profil</div>
+        <div>Plus</div>
+        <div class="tweet button">
+            <%= link_to 'Tweeter', new_tweet_path %>
+        </div>
+    </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
+<body>
+  <% @tweets.each do |tweet| %>
+    <tr>
+      <td><%=tweet.message%></td>
+      <td><%= link_to 'show', tweet %></td>
+      <td><%= link_to 'edit', edit_tweet_path(tweet) %></td>
+      <td><%= link_to 'delete', tweet, methode: :delete, data: {confirm: 'Are you sure ?'}%></td>
+    </tr>
+  <% end %>
+</body>
 
 
 <%
 =begin%>
- <p style="color: green"><%= notice %></p>
-
-<h1>Tweets</h1>
-
-<div id="tweets">
+ <div id="tweets">
   <% @tweets.each do |tweet| %>
     <%= render tweet %>
     <p>
@@ -38,6 +47,6 @@
   <% end %>
 </div>
 
-<%= link_to "New tweet", new_tweet_path %> 
+<%= link_to "New tweet", new_tweet_path %>  
 <%
 =end%>
