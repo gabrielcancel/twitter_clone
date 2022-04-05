@@ -1,0 +1,13 @@
+<div class="column is-half">
+    <article class="media box">
+    </article>
+</div>
+
+
+<% @tweets.each do | tweet | %>
+    <div class="box">
+        <article class="media">
+            <p><%= tweet.text :title %></p>
+        </article>
+    </div>
+<% end %>
