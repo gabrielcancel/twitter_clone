@@ -52,7 +52,7 @@
                     <div class="divider mb-2"></div>
 
                     <div class="modal-footer d-flex">
-                        <button class="btn shadow-1 rounded-1 btn-small primary mx-auto" id="register-btn">Register</button>
+                        <%= f.submit "Register", class: "btn shadow-1 rounded-1 btn-small primary mx-auto", id: "register-btn" %>
                     </div>
                 <% end %>
             </div>
@@ -82,7 +82,7 @@
                     <div class="divider mb-2"></div>
 
                     <div class="modal-footer d-flex actions">
-                        <%= f.submit "Log in", class: "btn shadow-1 rounded-1 btn-small primary mx-auto" %>
+                        <%= f.submit "Log in", class: "btn submit-btn shadow-1 rounded-1 btn-small primary mx-auto" %>
                     </div>
                 <% end %>
             </div>
@@ -168,3 +168,9 @@
         width: 30%;
     }
 </style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("Hello World!");
+    });
+</script>
