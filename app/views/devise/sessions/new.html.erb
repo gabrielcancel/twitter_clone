@@ -37,7 +37,7 @@
                         <label for="signup-email">Email</label>
                     </div>
                     <div class="form-field">
-                        <input type="text" id="signup-name" class="form-control" required/>
+                        <%= f.text_field :name, autocomplete: "name", id: "signup-name", class: "form-control" %>
                         <label for="signup-name">Username</label>
                     </div>
                     <div class="form-field">

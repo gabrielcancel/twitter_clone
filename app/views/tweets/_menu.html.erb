@@ -1,32 +1,69 @@
-<div class="col">
-    <div>Accueil</div>
-    <div class="elem">
-        <div class="logo"><svg viewBox="0 0 24 24"><g><path d="M21 7.337h-3.93l.372-4.272c.036-.412-.27-.775-.682-.812-.417-.03-.776.27-.812.683l-.383 4.4h-6.32l.37-4.27c.037-.413-.27-.776-.68-.813-.42-.03-.777.27-.813.683l-.382 4.4H3.782c-.414 0-.75.337-.75.75s.336.75.75.75H7.61l-.55 6.327H3c-.414 0-.75.336-.75.75s.336.75.75.75h3.93l-.372 4.272c-.036.412.27.775.682.812l.066.003c.385 0 .712-.295.746-.686l.383-4.4h6.32l-.37 4.27c-.036.413.27.776.682.813l.066.003c.385 0 .712-.295.746-.686l.382-4.4h3.957c.413 0 .75-.337.75-.75s-.337-.75-.75-.75H16.39l.55-6.327H21c.414 0 .75-.336.75-.75s-.336-.75-.75-.75zm-6.115 7.826h-6.32l.55-6.326h6.32l-.55 6.326z"></g></path></div>
-        <div><p>Explorer</p></div>
-    </div>
-    <div>Notifications</div>
-    <div>Messages</div>
-    <div>Signets</div>
-    <div>Listes</div>
-    <div>Profil</div>
-    <div>Plus</div>
-    <div class="tweet button">
-            <%= link_to 'Tweeter', new_tweet_path %>
-    </div>
-<div>
+<div class="d-flex fx-col" id="menu">
+    <div class="w100 px-5">
+        <div class="mt-4 p-2">
+            <img class="mb-4" src="<%= asset_path 'blue_bird.png' %>" alt="twitter bird" height="30"/>
+        </div>
+        <div class="d-flex font-s4 mb-4 cursor-pointer menu-elements p-2 rounded-4 active">
+            <span class="iconify-inline mr-3" data-icon="mdi:home"></span>
+            <p>Home</p>
+        </div>
+        <div class="d-flex font-s4 mb-4 cursor-pointer menu-elements p-2 rounded-4">
+            <span class="iconify-inline mr-3" data-icon="mdi:hashtag"></span>
+            <p>Explore</p>
+        </div>
+        <div class="d-flex font-s4 mb-4 cursor-pointer menu-elements p-2 rounded-4">
+            <span class="iconify mr-3" data-icon="akar-icons:bell"></span>
+            <p>Notifications</p>
+        </div>
+        <div class="d-flex font-s4 mb-4 cursor-pointer menu-elements p-2 rounded-4">
+            <span class="iconify mr-3" data-icon="ic:outline-local-post-office"></span>
+            <p>Messages</p>
+        </div>
+        <div class="d-flex font-s4 mb-4 cursor-pointer menu-elements p-2 rounded-4">
+            <span class="iconify mr-3" data-icon="akar-icons:person"></span>
+            <p>Profile</p>
+        </div>
 
+        <button id="tweet-btn" class="p-3 btn shadow-1 rounded-4 blue font-w700">
+            Tweet
+        </button>
+    </div>
+
+    <div>
+        <% if current_user.present? %>
+            <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
+        <% end %>
+    </div>
+</div>
 
 <style>
-.elem {
-    padding-bottom: 12px;
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-top: 12px;
-    -webkit-box-direction: normal;
-    -webkit-box-orient: horizontal;
-    flex-direction: row;
-    position: relative;
-    display: flex;
-    z-index: 0;
-}
+    #menu {
+        height: 100vh;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .active {
+        font-weight: bold;
+    }
+
+    .menu-elements:hover {
+        background-color: #dadada;
+    }
+
+    #tweet-btn {
+        width: 100%;
+    }
 </style>
+
+<script>
+    var elements = document.getElementsByClassName('menu-elements');
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].addEventListener('click', function () {
+            for (var j = 0; j < elements.length; j++) {
+                elements[j].classList.remove('active');
+            }
+            this.classList.add('active');
+        });
+    }
+</script>
