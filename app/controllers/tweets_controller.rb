@@ -68,4 +68,12 @@ class TweetsController < ApplicationController
     def tweet_params
       params.require(:tweet).permit(:message)
     end
+
+    def find_generate_hashtag
+      @tweet.message.scan(/#\w+/).each do |hashtag|
+        @tweet.hash_tags.build(name: hashtag)
+      end
+    end
+    
 end
+

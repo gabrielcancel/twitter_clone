@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_15_102822) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_12_100718) do
+  create_table "hash_tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hash_tags_tweets", force: :cascade do |t|
+    t.integer "tweet_id", null: false
+    t.integer "hash_tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hash_tag_id"], name: "index_hash_tags_tweets_on_hash_tag_id"
+    t.index ["tweet_id"], name: "index_hash_tags_tweets_on_tweet_id"
+  end
+
   create_table "tweets", force: :cascade do |t|
     t.text "message"
     t.string "kind"
@@ -51,5 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_15_102822) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "hash_tags_tweets", "hash_tags"
+  add_foreign_key "hash_tags_tweets", "tweets"
   add_foreign_key "tweets", "users"
 end
