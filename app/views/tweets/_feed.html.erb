@@ -6,8 +6,9 @@
 
 <% @tweets.each do | tweet | %>
     <div class="box">
+        <p><%= tweet.id %></p>
         <article class="media">
-            <p><%= tweet.text :title %></p>
+            <p><%= tweet.message %></p>
         </article>
     </div>
 <% end %>
