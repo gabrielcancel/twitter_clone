@@ -38,7 +38,11 @@
                     </div>
                     <div class="form-field">
                         <%= f.text_field :name, autocomplete: "name", id: "signup-name", class: "form-control" %>
-                        <label for="signup-name">Username</label>
+                        <label for="signup-name">Name</label>
+                    </div>
+                    <div class="form-field">
+                        <%= f.text_field :name_tag, autocomplete: "username", id: "signup-username", class: "form-control" %>
+                        <label for="signup-username">Username</label>
                     </div>
                     <div class="form-field">
                         <%= f.password_field :password, autocomplete: "new-password", id: "signup-password", class: "form-control" %>
