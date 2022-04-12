@@ -31,9 +31,9 @@
             <div class="divider"></div>
 
             <div class="modal-content px-5">
-                <form class="form-material">
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "form-material") do |f| %>
                     <div class="form-field">
-                        <input type="email" id="signup-email" class="form-control" required/>
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", id: "signup-email", class: "form-control" %>
                         <label for="signup-email">Email</label>
                     </div>
                     <div class="form-field">
@@ -41,20 +41,20 @@
                         <label for="signup-name">Username</label>
                     </div>
                     <div class="form-field">
-                        <input type="password" id="signup-password" class="form-control" required/>
+                        <%= f.password_field :password, autocomplete: "new-password", id: "signup-password", class: "form-control" %>
                         <label for="signup-password">Password</label>
                     </div>
                     <div class="form-field">
-                        <input type="password" id="signup-password-repeat" class="form-control" required/>
+                        <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "signup-password-repeat", class: "form-control" %>
                         <label for="signup-password-repeat">Repeat password</label>
                     </div>
-                </form>
-            </div>
 
-            <div class="divider mb-2"></div>
+                    <div class="divider mb-2"></div>
 
-            <div class="modal-footer d-flex">
-                <button class="btn shadow-1 rounded-1 btn-small primary mx-auto" id="register-btn">Register</button>
+                    <div class="modal-footer d-flex">
+                        <button class="btn shadow-1 rounded-1 btn-small primary mx-auto" id="register-btn">Register</button>
+                    </div>
+                <% end %>
             </div>
         </div>
 
