@@ -1,13 +1,17 @@
-<div id="<%= dom_id tweet %>">
+<div id="<%= tweet %>">
   <p>
     <strong>Message:</strong>
     <%= tweet.message %>
   </p>
 
-  <p>
+  <%
+=begin%>
+ <p>
     <strong>Kind:</strong>
     <%= tweet.kind %>
-  </p>
+  </p> 
+<%
+=end%>
 
   <p>
     <strong>Likes:</strong>
