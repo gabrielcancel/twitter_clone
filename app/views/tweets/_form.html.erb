@@ -16,7 +16,9 @@
     <%= form.text_area :message %>
   </div>
 
-  <div>
+  <%
+=begin%>
+ <div>
     <%= form.label :kind, style: "display: block" %>
     <%= form.text_field :kind %>
   </div>
@@ -24,12 +26,10 @@
   <div>
     <%= form.label :likes, style: "display: block" %>
     <%= form.number_field :likes %>
-  </div>
+  </div> 
+<%
+=end%>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
 
   <div>
     <%= form.submit %>

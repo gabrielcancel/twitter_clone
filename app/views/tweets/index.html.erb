@@ -6,33 +6,17 @@
   </div>
 </section>
 
+<%= render 'menu' %>
+
 <p style="color: green"><%= notice %></p>
 
 <h1>Tweets</h1>
 
-<div class="left panel">
-        <div>Accueil</div>
-        <div>Explorer</div>
-        <div>Notifications</div>
-        <div>Messages</div>
-        <div>Signets</div>
-        <div>Listes</div>
-        <div>Profil</div>
-        <div>Plus</div>
-        <div class="tweet button">
-            <%= link_to 'Tweeter', new_tweet_path %>
-        </div>
-    </div>
+<% if current_user.present? %>
+  <%= button_to 'Log out', destroy_user_session_path, method: :delete %>  
+<% end %>
 
 <body>
-  <% @tweets.each do |tweet| %>
-    <tr>
-      <td><%=tweet.message%></td>
-      <td><%= link_to 'show', tweet %></td>
-      <td><%= link_to 'edit', edit_tweet_path(tweet) %></td>
-      <td><%= link_to 'delete', tweet, methode: :delete, data: {confirm: 'Are you sure ?'}%></td>
-    </tr>
-  <% end %>
 </body>
 
 
