@@ -1,0 +1,170 @@
+<div class="grix xs7 gutter-xs0">
+    <div class="col-xs7 col-md4 image-logo-container">
+        <img class="relative-pos m-auto w100" src="<%= asset_path 'white_bird.png' %>" alt="twitter bird"/>
+    </div>
+
+    <div class="d-flex col-xs7 col-md3 d-flex fx-col m-4 p-5 fx-center mx-auto">
+        <img id="blue-bird" class="mb-4" src="<%= asset_path 'blue_bird.png' %>" alt="twitter bird"/>
+        <h1 class="happening title font-w700 mb-3">Happening now</h1>
+
+        <div class="sign-container">
+            <h2 class="font-s5 title font-w700 mb-5">Join twitter today.</h2>
+
+            <div id="signup-btn" class="btn d-flex py-3 text-white font-w900 text-center blue rounded-4 px-3 mb-4" data-target="modal-signup">
+                <p class="mx-auto">Sign up</p>
+            </div>
+
+            <div id="signin-btn" class="btn d-flex py-3 text-blue font-w900 text-center bd-solid bd-blue bd-1 rounded-4 px-3" data-target="modal-signin">
+                <p class="mx-auto">Log in</p>
+            </div>
+        </div>
+
+
+        <div class="modal shadow-1 white modal-falling rounded-2" id="modal-signup" data-ax="modal">
+            <div class="modal-header d-flex">
+                <p>Sign up</p>
+                <div data-target="modal-signup" class="ml-auto cursor-pointer">
+                    <span class="iconify" data-icon="ep:close-bold"></span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="modal-content px-5">
+                <form class="form-material">
+                    <div class="form-field">
+                        <input type="email" id="signup-email" class="form-control" required/>
+                        <label for="signup-email">Email</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="text" id="signup-name" class="form-control" required/>
+                        <label for="signup-name">Username</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="password" id="signup-password" class="form-control" required/>
+                        <label for="signup-password">Password</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="password" id="signup-password-repeat" class="form-control" required/>
+                        <label for="signup-password-repeat">Repeat password</label>
+                    </div>
+                </form>
+            </div>
+
+            <div class="divider mb-2"></div>
+
+            <div class="modal-footer d-flex">
+                <button class="btn shadow-1 rounded-1 btn-small primary mx-auto" id="register-btn">Register</button>
+            </div>
+        </div>
+
+        <div class="modal shadow-1 white modal-falling rounded-2" id="modal-signin" data-ax="modal">
+            <div class="modal-header d-flex">
+                <p>Sign in</p>
+                <div data-target="modal-signin" class="ml-auto cursor-pointer">
+                    <span class="iconify" data-icon="ep:close-bold"></span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="modal-content px-5">
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-material") do |f| %>
+                    <div class="form-field">
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "signin-name" %>
+                        <label for="signin-name">Email</label>
+                    </div>
+                    <div class="form-field">
+                        <%= f.password_field :password, autocomplete: "current-password", class: "form-control", id: "signin-password" %>
+                        <label for="signin-password">Password</label>
+                    </div>
+
+                    <div class="divider mb-2"></div>
+
+                    <div class="modal-footer d-flex actions">
+                        <%= f.submit "Log in", class: "btn shadow-1 rounded-1 btn-small primary mx-auto" %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer col-xs7 d-flex z-index-1">
+        <nav class="grix xs1 w100">
+            <ul class="footer-list">
+                <li class="text-grey mx-2 mb-2"><a href="#">About</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Help Center</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Terms of Service</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Privacy Policy</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Cookie Policy</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Accessibility</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Ads info</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Blog</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Status</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Careers</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Brand Resources</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Advertising</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Marketing</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Twitter for Business</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Developers</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Directory</a></li>
+                <li class="text-grey mx-2 mb-2"><a href="#">Settings</a></li>
+                <li class="text-grey mx-2 mb-2">© 2022 Twitter, Inc.</li>
+            </ul>
+        </nav>
+    </footer>
+</div>
+
+<style>
+    .footer li a:hover {
+        text-decoration: underline;
+    }
+
+    .footer-list {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        color: grey;
+    }
+
+    .image-logo-container {
+        display: flex;
+        justify-content: center;
+
+        height: 92vh;
+        margin-bottom: 16px;
+        background-image: url("https://abs.twimg.com/sticky/illustrations/lohp_en_1302x955.png");
+    }
+
+    #blue-bird {
+        width: 40px;
+    }
+
+    #signup-btn, #signin-btn {
+        width: 18rem;
+    }
+
+    #signup-btn p {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .happening {
+        font-size: 4rem;
+    }
+
+    .title {
+        font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif, sans-serif;
+    }
+
+    .sign-container {
+        width: 300px;
+    }
+
+    #modal-signin {
+        width: 30%;
+    }
+</style>
