@@ -14,22 +14,13 @@
 <body>
     <% if flash[:notice] %>
         <div class="flash notice">
-            <%
-=begin%>
- <p class="notice"><%= notice %></p> 
-<%
-=end%>
+            
         </div>
     <% end %>
 
     <% if flash[:alert] %>
         <div class="flash alert">
             <script>console.log(alert)</script>
-            <%
-=begin%>
- <p class="alert"><%= alert %></p> 
-<%
-=end%>
         </div>
     <% end %>
 

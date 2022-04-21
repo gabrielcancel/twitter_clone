@@ -2,6 +2,7 @@
 <% @tweets.each do |tweet| %>
 <div class='tweet'>
     <div><%=tweet.user.name%></div>
+    <div><%=tweet.created_at%></div>
     <div><%=tweet.message%></div>
     <div class="dropdown">
         <button class="dropbtn">Dropdown</button>
