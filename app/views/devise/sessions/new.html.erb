@@ -53,6 +53,11 @@
                         <label for="signup-password-repeat">Repeat password</label>
                     </div>
 
+                    <div class="field">
+                        <%= f.label :birthdate %><br />
+                        <%= f.date_select :birthdate, :order => [:day, :month, :year], :end_year => 1930, :start_year => (Time.now - 18.years).year  %>
+                    </div>
+
                     <div class="divider mb-2"></div>
 
                     <div class="modal-footer d-flex">

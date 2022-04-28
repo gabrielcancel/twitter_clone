@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require 'net/http'
+
 
 class Users::RegistrationsController < Devise::RegistrationsController
 
@@ -11,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
   def account_update
-    params.require(:user).permit(:name, :name_tag, :email, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(:name, :name_tag, :email, :password, :password_confirmation, :current_password, :desc, :location, :website, :birthday)
   end
 
 
