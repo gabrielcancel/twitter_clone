@@ -14,7 +14,7 @@
                 <p class="mx-auto">Sign up</p>
             </div>
 
-            <div id="signin-btn" class="btn d-flex py-3 text-blue font-w900 text-center bd-solid bd-blue bd-1 rounded-4 px-3" data-target="modal-signin">
+            <div id="signin-btn aaa" class="btn d-flex py-3 text-blue font-w900 text-center bd-solid bd-blue bd-1 rounded-4 px-3" data-target="modal-signin">
                 <p class="mx-auto">Log in</p>
             </div>
         </div>
@@ -170,3 +170,10 @@
         width: 30%;
     }
 </style>
+
+<script>
+    let btn = document.getElementById("aaa-btn");
+    btn.addEventListener("click", () => {
+        console.log("you clicked me");
+    });
+</script>

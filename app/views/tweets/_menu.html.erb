@@ -1,4 +1,4 @@
-<div class="d-flex fx-col" id="menu">
+<div class="d-flex fx-col fixed-pos" id="menu">
     <div class="w100 px-5">
         <div class="mt-4 p-2">
             <img class="mb-4" src="<%= asset_path 'blue_bird.png' %>" alt="twitter bird" height="30"/>
@@ -24,10 +24,6 @@
                 <span class="iconify mr-3" data-icon="akar-icons:person"></span>
                 <p>Profile</p>
             </div>
-
-            <button id="tweet-btn" class="p-3 btn shadow-1 rounded-4 blue font-w700">
-                Tweet
-            </button>
         <% end %>
 
     </div>
@@ -67,10 +63,6 @@
 
     .menu-elements:hover {
         background-color: #dadada;
-    }
-
-    #tweet-btn {
-        width: 100%;
     }
 
     .user_infos {

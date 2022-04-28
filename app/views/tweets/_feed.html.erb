@@ -1,61 +1,168 @@
+<div class="d-flex fx-col bd-solid bd-l-1 bd-r-1 feed">
+    <% if current_user.present? %>
+        <div class="bd-solid bd-b-1" id="newtweet-container">
+            <h1 class="font-w700 font-s3 my-2 ml-2">New tweet</h1>
+            <div class="d-flex fx-col px-3">
+                <div class="d-flex mt-3">
+                    <div class="mr-2 mb-4">
+                        <img src="https://avatars.dicebear.com/api/adventurer/<%= current_user.name %>.svg" alt="avatar" class="rounded-circle" width="50" height="50"/>
+                    </div>
+                    <form class="w100">
+                        <div class="form-field">
+                            <textarea id="tweet-form" class="form-control" placeholder="What's happening ?"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <hr class="bd-solid bd-1 bd-grey bd-light-3 divider">
 
-<% @tweets.each do |tweet| %>
-<div class='tweet'>
-    <div><%=tweet.user.name%></div>
-    <div><%=tweet.message%></div>
-    <div class="dropdown">
-        <button class="dropbtn">Dropdown</button>
-        <div class="dropdown-content">
-            <p><%= link_to 'show', tweet %></p>
-            <p><%= link_to 'edit', edit_tweet_path(tweet) %></p>
-            <p><%= link_to 'delete', tweet, methode: :delete, data: {confirm: 'Are you sure ?'}%></p>
+                <div class="btn shadow-1 rounded-1 blue ml-auto mt-3 mb-5" id="tweet-btn" disabled="true">Tweet</div>
+            </div>
         </div>
-    </div>
+    <% end %>
 
+    <div class="tweets-container">
+        <% @tweets.each do |tweet| %>
+            <div class='tweet bd-solid bd-b-1 p-3'>
+                <div class="d-flex vcenter">
+                    <div class="mr-2">
+                        <img src="https://avatars.dicebear.com/api/adventurer/<%= tweet.user.name %>.svg" alt="avatar" class="rounded-circle" width="50" height="50"/>
+                    </div>
+                    <div class="font-w700"><p><%= tweet.user.name %></p></div>
+                    <div class="font-w500 text-grey text-light-1 ml-1"><p>@<%= tweet.user.name_tag %> · <%= time_ago_in_words(tweet.user.created_at) %> ago</p></div>
+                    <div class="ml-auto">
+                        <p class="cursor-pointer">Edit</p>
+                    </div>
+                </div>
+
+
+                <div class="ml-1"><%= tweet.message %></div>
+                <div class="dropdown">
+                    <button class="dropbtn">Dropdown</button>
+                    <div class="dropdown-content">
+                        <p><%= link_to 'show', tweet %></p>
+                        <p><%= link_to 'edit', edit_tweet_path(tweet) %></p>
+                        <p><%= link_to 'delete', tweet, methode: :delete, data: { confirm: 'Are you sure ?' } %></p>
+                    </div>
+                </div>
+
+            </div>
+        <% end %>
+    </div>
+    <div class="tweet button">
+        <%= link_to 'Tweeter', new_tweet_path %>
+    </div>
 </div>
-<% end %>
 
 
 <style>
-/* Dropdown Button */
-.dropbtn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-}
+    /* Dropdown Button */
+    .dropbtn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
 
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
 
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+
+    #newtweet-container {
+        min-height: 150px;
+        border-color: rgba(164, 164, 164, 0.2);
+    }
+
+    .feed {
+        border-color: rgba(164, 164, 164, 0.2);
+    }
+
+    #tweet-form {
+        width: 100%;
+        border: none;
+        resize: none;
+
+    }
+
+    #tweet-form:focus {
+        box-shadow: none;
+    }
+
+    #tweet-form::placeholder {
+        color: #989898;
+        font-weight: 600;
+        font-size: 24px;
+        font-family: Roboto, sans-serif;
+    }
+
+    #tweet-form::-webkit-scrollbar {
+        display: none;
+    }
+
+    .divider {
+        width: 80%;
+    }
+
+    .tweet {
+        border-color: rgba(164, 164, 164, 0.2);
+    }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // get screen size
+        const screenHeight = window.innerHeight;
+        document.body.getElementsByClassName("tweets-container")[0].style.minHeight = screenHeight - document.getElementById("newtweet-container").style.minHeight + "px";
+    });
+
+
+    window.addEventListener("load", function () {
+        let textarea = window.document.getElementById("tweet-form");
+        textarea.addEventListener("input", function () {
+            textarea.style.height = "auto";
+            textarea.style.height = textarea.scrollHeight + "px";
+
+            if (textarea.value.length === 0) {
+                document.getElementById("tweet-btn").setAttribute("disabled", true);
+            } else {
+                document.getElementById("tweet-btn").removeAttribute("disabled");
+            }
+
+        }, false);
+    }, false);
+</script>
