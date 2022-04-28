@@ -1,0 +1,12 @@
+.elem {
+    padding-bottom: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 12px;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    flex-direction: row;
+    position: relative;
+    display: flex;
+    z-index: 0;
+}
