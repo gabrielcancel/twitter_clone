@@ -24,6 +24,9 @@
                 <span class="iconify mr-3" data-icon="akar-icons:person"></span>
                 <p>Profile</p>
             </div>
+            <% if current_user %>
+                <%= link_to "Edit", edit_user_registration_path %>
+            <% end %>
         <% end %>
 
     </div>
