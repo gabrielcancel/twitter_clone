@@ -6,11 +6,14 @@ class TweetsController < ApplicationController
   # GET /tweets or /tweets.json
   def index
     @tweets = Tweet.all.order("created_at DESC")
+
+    if params[:search] && params[:search].start_with?("#")
+      @tweets = HashTag.where("name LIKE ?", "%#{params[:search].delete("#")}%").all.tweets
+    else
+      @tweets = @tweets.where("message LIKE ?", "%#{params[:search]}%")
+    end
   end
 
-  def search
-    @searchtweets = Tweet.where("text LIKE ?", "%#{params[:search]}%")
-  end
   # GET /tweets/1 or /tweets/1.json
   def show
   end
@@ -76,10 +79,10 @@ class TweetsController < ApplicationController
 
     def find_generate_hashtag
       @tweet.message.scan(/#\w+/).each do |hashtag|
-      hashtag = hashtag.strip
-      hashtag ["#"] = ''
-      current_hashtag = HashTag.find_or_create_by(name: hashtag)
-      @tweet.hash_tags << current_hashtag
+        hashtag = hashtag.strip
+        hashtag ["#"] = ''
+        current_hashtag = HashTag.find_or_create_by(name: hashtag)
+        @tweet.hash_tags << current_hashtag
       end
     end
 
