@@ -1,16 +1,12 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :check_right, only: [:destroy]
 
   # GET /tweets or /tweets.json
   def index
     @tweets = Tweet.all.order("created_at DESC")
   end
 
-  def search
-    @searchtweets = Tweet.where("text LIKE ?", "%#{params[:search]}%")
-  end
   # GET /tweets/1 or /tweets/1.json
   def show
   end
@@ -30,7 +26,6 @@ class TweetsController < ApplicationController
     @tweet.user_id = current_user.id
     respond_to do |format|
       if @tweet.save
-        find_generate_hashtag
         format.html { redirect_to tweet_url(@tweet)}
         format.json { render :show, status: :created, location: @tweet }
       else
@@ -71,23 +66,14 @@ class TweetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tweet_params
-      params.require(:tweet).permit(:message, :search)
+      params.require(:tweet).permit(:message)
     end
 
     def find_generate_hashtag
       @tweet.message.scan(/#\w+/).each do |hashtag|
-      hashtag = hashtag.strip
-      hashtag ["#"] = ''
-      current_hashtag = HashTag.find_or_create_by(name: hashtag)
-      @tweet.hash_tags << current_hashtag
+        @tweet.hash_tags.build(name: hashtag)
       end
     end
-
-    def check_right
-      if current_user.id != @tweet.user_id
-        redirect_to tweets_url, notice: "You can't delete other user's tweets"
-      end
-    end
-        
+    
 end
 
