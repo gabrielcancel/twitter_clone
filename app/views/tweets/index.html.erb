@@ -5,12 +5,34 @@
     <div class="col-xs2">
         <%= render 'feed', tweet: @tweet %>
     </div>
-    <div class="col-xs1">
-
+    <div class="col-xs1 px-2 pt-5">
+        <div class="mt-5">
+            <%= form_tag "/tweets", method: "GET" do %>
+                <div class="d-flex fx-col search-container">
+                    <p class="font-w700 font-s6"><%= label_tag :search, value = "Rechercher", class: "mb-5 search-label" %></p>
+                    <%= text_field_tag :search, params[:search], placeholder: "Tweet ou #", class: "search-field mt-2" %>
+                    <%= submit_tag "Rechercher", class: "btn shadow-1 rounded-1 blue ml-auto mt-3 mb-" %>
+                </div>
+            <% end %>
+        </div>
     </div>
 </div>
 
-<p style="color: green"><%= notice %></p>
+<style>
+    .search-field {
+        border-bottom: grey solid 1px;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+    }
 
-<body>
-</body>
+    .search-field:focus {
+        outline: none;
+    }
+
+    .search-field::placeholder {
+        color: #989898;
+        font-weight: 600;
+        font-family: Roboto, sans-serif;
+    }
+</style>
