@@ -65,6 +65,10 @@
 
 </div>
 
+  <div class="field">
+    <%= f.label :birthdate %><br />
+    <%= f.date_select :birthdate, :order => [:day, :month, :year], :end_year => 1930, :start_year => (Time.now - 18.years).year  %>
+  </div>
 
 <style>
     .card {
