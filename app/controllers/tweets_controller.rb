@@ -94,6 +94,5 @@ class TweetsController < ApplicationController
         redirect_to tweets_url, notice: "You can't delete other user's tweets"
       end
     end
-        
 end
 

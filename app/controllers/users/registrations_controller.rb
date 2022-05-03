@@ -1,6 +1,4 @@
 # frozen_string_literal: true
-require 'net/http'
-
 
 class Users::RegistrationsController < Devise::RegistrationsController
 
@@ -43,6 +41,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # DELETE /resource
   # def destroy
   #   super
+  #   puts 'destroy'
   # end
 
   # GET /resource/cancel
