@@ -12,8 +12,6 @@ class TweetsController < ApplicationController
 
     elsif params[:search] && params[:search].start_with?("@")
       @tweets = User.where("name_tag LIKE ?", "%#{params[:search].delete("@")}%").first.tweets.order("created_at DESC")
-    else
-      @tweets = @tweets.where("message LIKE ?", "%#{params[:search]}%").order("created_at DESC")
     end
   end
 
