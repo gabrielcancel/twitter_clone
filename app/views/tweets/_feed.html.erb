@@ -25,32 +25,35 @@
 
 
     <div class="tweets-container">
-        <% @tweets.each do |tweet| %>
-            <div class='tweet bd-solid bd-b-1 p-3'>
-                <div class="d-flex vcenter">
-                    <div class="mr-2">
-                        <img src="https://avatars.dicebear.com/api/adventurer/<%= tweet.user.name %>.svg" alt="avatar" class="rounded-circle" width="50" height="50"/>
-                    </div>
-                    <div class="font-w700"><p><%= tweet.user.name %></p></div>
-
-                    <div class="font-w500 text-grey text-light-1 ml-1">
-                        <p>@<%= tweet.user.name_tag %> · <%= time_ago_in_words(tweet.user.created_at) %> ago</p></div>
-
-
-                    <% if current_user && current_user.name_tag == tweet.user.name_tag%>
-                        <div class="d-flex gutter-xs1 ml-auto">
-                            <p class="tweets-btn"><%= link_to 'Edit', edit_tweet_path(tweet) %></p>
-
-                            <%= button_to "Delete", tweet, method: :delete, class: "tweets-btn" %>
+        <% if @tweets %>
+            <% @tweets.each do |tweet| %>
+                <div class='tweet bd-solid bd-b-1 p-3'>
+                    <div class="d-flex vcenter">
+                        <div class="mr-2">
+                            <img src="https://avatars.dicebear.com/api/adventurer/<%= tweet.user.name %>.svg" alt="avatar" class="rounded-circle" width="50" height="50"/>
                         </div>
-                    <% end %>
+                        <div class="font-w700"><p><%= tweet.user.name %></p></div>
+
+                        <div class="font-w500 text-grey text-light-1 ml-1">
+                            <p>@<%= tweet.user.name_tag %> · <%= time_ago_in_words(tweet.user.created_at) %> ago</p>
+                        </div>
+
+
+                        <% if current_user && current_user.name_tag == tweet.user.name_tag %>
+                            <div class="d-flex gutter-xs1 ml-auto">
+                                <p class="tweets-btn"><%= link_to 'Edit', edit_tweet_path(tweet) %></p>
+
+                                <%= button_to "Delete", tweet, method: :delete, class: "tweets-btn" %>
+                            </div>
+                        <% end %>
+
+                    </div>
+
+
+                    <div class="ml-5 mt-3"><p class="tweets-content"><%= tweet.message %></p></div>
 
                 </div>
-
-
-                <div class="ml-5 mt-3"><p><%= tweet.message %></p></div>
-
-            </div>
+            <% end %>
         <% end %>
     </div>
 </div>
@@ -106,6 +109,11 @@
         outline: inherit;
         line-height: 20px;
     }
+
+    .hashtag {
+        color: #00aced;
+        cursor: pointer;
+    }
 </style>
 
 <script>
@@ -131,4 +139,24 @@
         // reload the page
         location.reload();
     });
+
+    setInterval(() => {
+        let tweets = document.getElementsByClassName("tweets-content")
+        for (let i = 0; i < tweets.length; i++) {
+            // get the words in the tweet that start with #
+            let words = tweets[i].innerText.split(" ");
+            for (let j = 0; j < words.length; j++) {
+                if (words[j].startsWith("#")) {
+                    // create a link to the hashtag
+                    let link = document.createElement("a");
+                    link.innerText = words[j];
+                    link.className = "hashtag";
+                    link.href = "/tweets?search=%23" + words[j].substring(1) + "&commit=Rechercher/";
+
+                    // replace the word with the link
+                    tweets[i].innerHTML = tweets[i].innerText.replace(words[j], link.outerHTML);
+                }
+            }
+        }
+    }, 1000);
 </script>

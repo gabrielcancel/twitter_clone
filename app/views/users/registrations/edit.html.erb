@@ -1,6 +1,6 @@
-<div class="card grey light-4 rounded-2 p-5 shadow-1">
+<div class="card grey light-4 rounded-2 px-5 py-3 shadow-1">
 
-    <div class="d-flex mx-auto mb-3">
+    <div class="d-flex mx-auto mb-1">
         <h2 class="text-center font-w700 font-s7 my-auto mr-2">Edit Profile</h2>
         <img src="https://avatars.dicebear.com/api/adventurer/<%= current_user.name %>.svg" alt="avatar" class="rounded-circle my-auto" width="50" height="50"/>
     </div>
@@ -43,10 +43,14 @@
                 <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control rounded-2" %>
             </div>
 
+            <div class="field col-xs2">
+                <p class="text-center mb-3 font-w600 font-s3 mt-1"><%= f.label :birthdate %></p>
+                <%= f.date_select :birthdate, :order => [:day, :month, :year], :end_year => 1930, :start_year => (Time.now - 18.years).year  %>
+            </div>
+
             <div class="actions col-xs2 mt-2">
                 <p class="text-center"><%= f.submit "Update", class: "btn shadow-1 rounded-1 grey light-2" %></p>
             </div>
-
 
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                 <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -58,17 +62,14 @@
 
     <% end %>
 
-    <div class="d-flex mx-auto mt-4 w100 fx-space-evenly">
+    <div class="d-flex fx-space-between mt-4">
         <%= link_to "Back", :back, class: "btn shadow-1 rounded-1 grey light-2" %>
-        <p class=""><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn shadow-1 rounded-1 red" %></p>
+        <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn shadow-1 rounded-1 red" %>
     </div>
 
 </div>
 
-  <div class="field">
-    <%= f.label :birthdate %><br />
-    <%= f.date_select :birthdate, :order => [:day, :month, :year], :end_year => 1930, :start_year => (Time.now - 18.years).year  %>
-  </div>
+
 
 <style>
     .card {
@@ -79,7 +80,7 @@
         width: 40%;
     }
 
-    .fx-space-evenly {
-        justify-content: space-evenly;
+    .fx-space-between {
+        justify-content: space-between;
     }
 </style>
