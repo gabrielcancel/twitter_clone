@@ -124,6 +124,14 @@
     });
 
     document.getElementById("tweet-btn").addEventListener("click", async () => {
+        if (document.getElementById("tweet-form").value.length === 0) {
+            return
+        }
+        if (document.getElementById("tweet-form").value.length > 280) {
+            alert("Your tweet is too long!")
+            return
+        }
+
         // post tweet to /tweets/new with the text "test"
         await fetch("/tweets", {
             method: "POST",
