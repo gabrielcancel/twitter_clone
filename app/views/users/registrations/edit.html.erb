@@ -44,7 +44,7 @@
             </div>
 
             <div class="field col-xs2">
-                <p class="text-center mb-3 font-w600 font-s3 mt-1"><%= f.label :birthdate %></p>
+                <p class="text-center mb-3 font-w600 font-s3"><%= f.label :birthdate %></p>
                 <%= f.date_select :birthdate, :order => [:day, :month, :year], :end_year => 1930, :start_year => (Time.now - 18.years).year  %>
             </div>
 
