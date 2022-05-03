@@ -6,15 +6,14 @@ class TweetsController < ApplicationController
   # GET /tweets or /tweets.json
   def index
     @tweets = Tweet.all.order("created_at DESC")
-    if @tweet 
-      if params[:search] && params[:search].start_with?("#")
-        @tweets = HashTag.where("name LIKE ?", "%#{params[:search].delete("#")}%").first.tweets.order("created_at DESC")
 
-      elsif params[:search] && params[:search].start_with?("@")
-        @tweets = User.where("name_tag LIKE ?", "%#{params[:search].delete("@")}%").first.tweets.order("created_at DESC")
-      else
-        @tweets = Tweet.all.order("created_at DESC")
-      end
+    if params[:search] && params[:search].start_with?("#")
+      @tweets = HashTag.where("name LIKE ?", "%#{params[:search].delete("#")}%").first.tweets.order("created_at DESC")
+
+    elsif params[:search] && params[:search].start_with?("@")
+      @tweets = User.where("name_tag LIKE ?", "%#{params[:search].delete("@")}%").first.tweets.order("created_at DESC")
+    else
+      @tweets = @tweets.where("message LIKE ?", "%#{params[:search]}%").order("created_at DESC")
     end
   end
 
