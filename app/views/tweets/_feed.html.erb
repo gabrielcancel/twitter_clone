@@ -36,7 +36,8 @@
                     <div class="font-w500 text-grey text-light-1 ml-1">
                         <p>@<%= tweet.user.name_tag %> · <%= time_ago_in_words(tweet.user.created_at) %> ago</p></div>
 
-                    <% if current_user.name_tag == tweet.user.name_tag %>
+
+                    <% if current_user && current_user.name_tag == tweet.user.name_tag%>
                         <div class="d-flex gutter-xs1 ml-auto">
                             <p class="tweets-btn"><%= link_to 'Edit', edit_tweet_path(tweet) %></p>
 
