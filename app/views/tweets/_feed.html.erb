@@ -1,0 +1,170 @@
+<div class="d-flex fx-col bd-solid bd-l-1 bd-r-1 feed">
+
+    <% if current_user.present? %>
+        <div class="bd-solid bd-b-1" id="newtweet-container">
+            <h1 class="font-w700 font-s3 my-2 ml-2">New tweet</h1>
+
+            <div class="d-flex fx-col px-3">
+                <div class="d-flex mt-3">
+                    <div class="mr-2 mb-4">
+                        <img src="https://avatars.dicebear.com/api/adventurer/<%= current_user.name %>.svg" alt="avatar" class="rounded-circle" width="50" height="50"/>
+                    </div>
+                    <div class="w100">
+                        <textarea class="form-control" id="tweet-form" placeholder="What's happening?"></textarea>
+                    </div>
+                </div>
+                <hr class="bd-solid bd-1 bd-grey bd-light-3 divider">
+
+                <div class="btn shadow-1 rounded-1 blue ml-auto mt-3 mb-5">
+                    <p id=tweet-btn>Tweet</p>
+                </div>
+            </div>
+
+        </div>
+    <% end %>
+
+
+    <div class="tweets-container">
+        <% if @tweets %>
+            <% @tweets.each do |tweet| %>
+                <div class='tweet bd-solid bd-b-1 p-3'>
+                    <div class="d-flex vcenter">
+                        <div class="mr-2">
+                            <img src="https://avatars.dicebear.com/api/adventurer/<%= tweet.user.name %>.svg" alt="avatar" class="rounded-circle" width="50" height="50"/>
+                        </div>
+                        <div class="font-w700"><p><%= tweet.user.name %></p></div>
+
+                        <div class="font-w500 text-grey text-light-1 ml-1">
+                            <p>@<%= tweet.user.name_tag %> · <%= time_ago_in_words(tweet.user.created_at) %> ago</p>
+                        </div>
+
+
+                        <% if current_user && current_user.name_tag == tweet.user.name_tag %>
+                            <div class="d-flex gutter-xs1 ml-auto">
+                                <p class="tweets-btn"><%= link_to 'Edit', edit_tweet_path(tweet) %></p>
+
+                                <%= button_to "Delete", tweet, method: :delete, class: "tweets-btn" %>
+                            </div>
+                        <% end %>
+
+                    </div>
+
+
+                    <div class="ml-5 mt-3"><p class="tweets-content"><%= tweet.message %></p></div>
+
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>
+
+
+<style>
+
+    #newtweet-container {
+        min-height: 150px;
+        border-color: rgba(164, 164, 164, 0.2);
+    }
+
+    .feed {
+        border-color: rgba(164, 164, 164, 0.2);
+    }
+
+    #tweet-form {
+        width: 100%;
+        border: none;
+        resize: none;
+
+    }
+
+    #tweet-form:focus {
+        box-shadow: none;
+    }
+
+    #tweet-form::placeholder {
+        color: #989898;
+        font-weight: 600;
+        font-size: 24px;
+        font-family: Roboto, sans-serif;
+    }
+
+    #tweet-form::-webkit-scrollbar {
+        display: none;
+    }
+
+    .divider {
+        width: 80%;
+    }
+
+    .tweet {
+        border-color: rgba(164, 164, 164, 0.2);
+    }
+
+    .tweets-btn {
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline: inherit;
+        line-height: 20px;
+    }
+
+    .hashtag {
+        color: #00aced;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // get screen size
+        const screenHeight = window.innerHeight;
+        document.body.getElementsByClassName("tweets-container")[0].style.minHeight = screenHeight - document.getElementById("newtweet-container").style.minHeight + "px";
+    });
+
+    document.getElementById("tweet-btn").addEventListener("click", async () => {
+        if (document.getElementById("tweet-form").value.length === 0) {
+            return
+        }
+        if (document.getElementById("tweet-form").value.length > 280) {
+            alert("Your tweet is too long!")
+            return
+        }
+
+        // post tweet to /tweets/new with the text "test"
+        await fetch("/tweets", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                message: document.getElementById("tweet-form").value,
+                authenticity_token: document.getElementsByName("csrf-token")[0].content
+            })
+        });
+        // reload the page
+        location.reload();
+    });
+
+    setInterval(() => {
+        let tweets = document.getElementsByClassName("tweets-content")
+        for (let i = 0; i < tweets.length; i++) {
+            // get the words in the tweet that start with #
+            let words = tweets[i].innerText.split(" ");
+            for (let j = 0; j < words.length; j++) {
+                if (words[j].startsWith("#")) {
+                    // create a link to the hashtag
+                    let link = document.createElement("a");
+                    link.innerText = words[j];
+                    link.className = "hashtag";
+                    link.href = "/tweets?search=%23" + words[j].substring(1) + "&commit=Rechercher/";
+
+                    // replace the word with the link
+                    tweets[i].innerHTML = tweets[i].innerText.replace(words[j], link.outerHTML);
+                }
+            }
+        }
+    }, 1000);
+</script>
