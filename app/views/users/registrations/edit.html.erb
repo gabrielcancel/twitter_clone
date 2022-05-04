@@ -1,4 +1,4 @@
-<div class="card grey light-4 rounded-2 px-5 py-3 shadow-1">
+<div class="card grey light-4 rounded-2 px-5 py-3 shadow-1 my-2">
 
     <div class="d-flex mx-auto mb-1">
         <h2 class="text-center font-w700 font-s7 my-auto mr-2">Edit Profile</h2>
@@ -19,7 +19,12 @@
                 <%= f.text_field :name_tag, class: "form-control rounded-2" %>
             </div>
 
-            <div class="field col-xs2 mb-3">
+            <div class="field mb-3">
+                <p class="text-center mb-3 font-w600 font-s4"><%= f.label :name %></p>
+                <%= f.text_field :name, class: "form-control rounded-2" %>
+            </div>
+
+            <div class="field mb-3">
                 <p class="text-center mb-3 font-w600 font-s4"><%= f.label :website %></p>
                 <%= f.text_field :website, class: "form-control rounded-2" %>
             </div>
