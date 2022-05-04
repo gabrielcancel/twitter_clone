@@ -1,24 +1,17 @@
-# README
+# Twitter Clone
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
+For this project we need to create a clone of the [Twitter](https://twitter.com) website.
+Rails is used to create the frontend and the backend because we can have an MVP fast and easy.
 
-Things you may want to cover:
 
-* Ruby version
+## Run the app
 
-* System dependencies
+```bash
+$ git clone project
+$ maildev --web 1080 --smtp 1025 --hide-extensions STARTTLS
+$ rails server
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Go on http://localhost:1080/ to access maildev app to validate your registration.
+Finally, go to http://localhost:3000/ to see the app.
