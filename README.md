@@ -8,7 +8,7 @@ Rails is used to create the frontend and the backend because we can have an MVP 
 ## Run the app
 
 ```bash
-$ git clone project
+$ git clone https://github.com/gabrielcancel/twitter_clone.git
 $ maildev --web 1080 --smtp 1025 --hide-extensions STARTTLS
 $ rails server
 ```
