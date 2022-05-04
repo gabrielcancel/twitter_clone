@@ -7,12 +7,13 @@ Rails is used to create the frontend and the backend because we can have an MVP 
 
 ## Requirements
 - [Rails 7](https://rubygems.org/gems/rails)
+- [Docker](https://www.docker.com/)
 
 ## Run the app
 
 ```bash
 $ git clone https://github.com/gabrielcancel/twitter_clone.git
-$ maildev --web 1080 --smtp 1025 --hide-extensions STARTTLS
+$ docker run -p 1080:1080 -p 1025:1025 maildev/maildev
 $ bundle install
 $ rails server
 ```
